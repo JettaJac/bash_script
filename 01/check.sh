@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Задаем ограничение по свободной памяти
-MEM=1024
+MEM=0
 MEM2=$((MEM/1024))
 
 SIZE=$(echo "$6" | awk -F'k' '{print $1}')
@@ -10,33 +10,33 @@ SIZE=$(echo "$6" | awk -F'k' '{print $1}')
 ## Проверка на то, что нет 7 параметра
 if [[ -n $7 ]]
 then
-    echo "ERROR! More than 6 parameters entered"
+    echo "ERROR! Parameters entered incorrectly, enter for example ./main.sh /test_Monitoring/ 2 gf 4 sj.s 100kb"
 
 ## Проверка, что подаеться 6 параметров
 elif [[ -n $6 ]]
 then
 
-    ## Проверка первого параметра, что это директория
-    if ! [[ -d $1 ]]
-    then
-        echo "ERROR! Directory not specified correctly"
-    
     ## Проверка первого параметра (абсолютный путь)    
-    elif ! [[ ${1:0:1} = "/" ]]
+    if ! [[ ${1:0:1} = "/" ]]
     then 
         echo "ERROR! Path specified incorrectly, enter an absolute path starting with '/'"
 
-    ## Проверяем, что нам здесь подают число (количество папок)
+    ## Проверка первого параметра, что это директория
+    elif ! [[ -d ${1:1} ]]
+    then
+        echo "ERROR! Directory not specified correctly"
+    
+        ## Проверяем, что нам здесь подают число (количество папок)
     elif ! [[ "$2" =~ ^[0-9]+$ ]]
     then
         echo "ERROR! The second parameter is incorrect, enter the number of subfolders"
     
     ## Проверяем, что только буквы английского алвафита, до 7 шт     
-    elif ! [[ "$3" =~ ^[A-Za-z]+$ ]] || [ $(expr length "$3") -gt 7 ]
+    elif ! [[ "$3" =~ ^[A-Za-z]+$ ]] || [ ${#3} -gt 7 ]
     ## (( $(expr length "$3") > "7" ))
     then       
         echo "ERROR! The third parameter is incorrect, enter the letters of the English alphabet used in the name of the folders"
-        if [ $(expr length "$3") -gt 7 ]
+        if [ ${#3} -gt 7 ]
         then    
             echo "File name must be up to 7 characters"
         fi
@@ -70,15 +70,26 @@ then
     then
         echo "ERROR! The sixth parameter is incorrect, enter file parsing in kilobytes, example 3kb (from 1 to 100 kb)"
 
-    ## Проверка, на остаток свободной памяти, в соответствие с задаными условиями
-    elif ! [[ $(df -m  | awk '/sda/{print $4}') -gt $MEM ]]
-    then
-        echo "ERROR! Memory less than $MEM2 Gb"
+    # Проверка, на остаток свободной памяти, в соответствие с задаными условиями
+    #elif ! [[ $(df -m  | awk '/sda/{print $4}') -gt $MEM ]]
+    #then
+       # echo "ERROR! Memory less than $MEM2 Gb"
     fi 
 else
-    echo "ERROR! Less than 6 parameters entered"
+    echo "ERROR! Less than 6 parameters entered, , enter for example ./main.sh /test_Monitoring/ 2 gf 4 sj.s 100kb"
 fi
      
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Задаем ограничение по свободной памяти 
-MEM=1030
+MEM=1024
 MEM2=$((MEM/1024))
 
 
@@ -18,7 +18,7 @@ then
     SIZE=$(echo "$3" | awk -F'M' '{print $1}')
     
     # Проверка первого параметра, подаем только буквы английского алвафита до 7 шт (имя папки)
-    if ! [[ "$1" =~ ^[A-Za-z]+$ ]] || [ $(expr length "$3") -gt 7 ]
+    if ! [[ "$1" =~ ^[A-Za-z]+$ ]] || [ ${#3} -gt 7 ]
     # (( $(expr length "$3") > "7" ))
     then       
         echo "ERROR! The first parameter is incorrect, enter the letters of the English alphabet used in the name of the folders"

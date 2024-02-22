@@ -23,7 +23,7 @@ chmod +x check.sh
 RES="$(./check.sh $1 $2 $3 $4 $5 $6 $7)"
 
 PATH_START=$(pwd)
-PATH_WORK=$1
+PATH_WORK=${1:1}
 echo $1
 
 if [ "$RES" == "" ]
@@ -74,7 +74,7 @@ then
         fi
 
         FolderNamePrint="$FolderName"_$(date +"%d%m%y")
-        PATH_WORK=$(pwd)
+        #PATH_WORK=$(pwd)
         cd $PATH_WORK || exit
         
         FileNum=0

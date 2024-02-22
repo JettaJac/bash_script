@@ -1,0 +1,5 @@
+Starting the system: 13:55:20
+
+
+System shutdown: 13:55:20
+System run time (sec) = 0
