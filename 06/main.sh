@@ -22,4 +22,4 @@ fi
   sudo goaccess -f ../04/*.log --log-format=COMBINED -o report.html
   sudo service nginx restart 
   sudo nginx -t
-  # http://localhost:3082/
+  http://localhost:3082/

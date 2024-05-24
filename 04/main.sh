@@ -55,7 +55,7 @@ do
     codes=$(shuf codes -n1)
     # Генерируем количество байт
     bites=$(shuf -i 12-999 -n1)
-    # Рандомно ввыодим сайты
+    # Рандомно выводим сайты
     request=$(shuf request -n1) 
     # Рандомно ввыодим заданных агентов
     agents=$(shuf agents -n1)  
